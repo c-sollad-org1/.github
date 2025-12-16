@@ -1,0 +1,7 @@
+{
+  "name": "Add to Project Workflow",
+  "description": "Automatically adds new issues and PRs to the organization project board",
+  "iconName": "project",
+  "categories": ["Project Management", "Automation"],
+  "filePatterns": ["add-to-project.yml"]
+}

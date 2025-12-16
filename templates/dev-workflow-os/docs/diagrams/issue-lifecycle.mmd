@@ -1,0 +1,67 @@
+stateDiagram-v2
+    [*] --> Opened: Issue created
+    
+    Opened --> Triage: Auto-added to project
+    
+    Triage --> Todo: Accepted & prioritized
+    Triage --> Closed: Rejected / Duplicate
+    Triage --> NeedsInfo: More information needed
+    
+    NeedsInfo --> Triage: Information provided
+    NeedsInfo --> Closed: No response
+    
+    Todo --> InProgress: Work started
+    
+    InProgress --> InReview: PR opened
+    InProgress --> Blocked: Dependencies / Issues
+    InProgress --> Todo: Paused / Deprioritized
+    
+    Blocked --> InProgress: Unblocked
+    Blocked --> Todo: Alternative approach
+    
+    InReview --> InProgress: Changes requested
+    InReview --> Done: PR merged
+    
+    Done --> [*]: Issue closed
+    Closed --> [*]
+    
+    note right of Opened
+        Labels applied:
+        - Type (bug/feature/task)
+        - Area (ci/docs/etc)
+    end note
+    
+    note right of Triage
+        Platform/Owner reviews:
+        - Is it valid?
+        - What's the priority?
+        - Who should work on it?
+    end note
+    
+    note right of Todo
+        Work is planned:
+        - Priority: P0-P3
+        - Effort: XS-XL
+        - Owner Team assigned
+    end note
+    
+    note right of InProgress
+        Active development:
+        - Branch created
+        - Commits happening
+        - Regular updates
+    end note
+    
+    note right of InReview
+        PR review:
+        - CODEOWNERS review
+        - CI checks passing
+        - Approvals required
+    end note
+    
+    note right of Done
+        Completed:
+        - PR merged
+        - Changes deployed
+        - Issue auto-closed
+    end note

@@ -1,0 +1,13 @@
+# Default owners for everything in the repo
+# Customize this file based on your team structure
+* @org/platform-team
+
+# Example: Specific paths can have different owners
+# /docs/ @org/docs-team
+# /src/api/ @org/backend-team
+# /src/ui/ @org/frontend-team
+# /.github/ @org/platform-team
+
+# Governance files require platform team review
+/GOVERNANCE.md @org/platform-team
+/.github/workflows/ @org/platform-team

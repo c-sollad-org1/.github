@@ -1,0 +1,49 @@
+sequenceDiagram
+    participant User
+    participant Issue as New Repo Request<br/>Issue
+    participant Platform as Platform Team
+    participant GH as GitHub API
+    participant Template as repo-template
+    participant Swarm as Bootstrap Swarm
+    participant Repo as New Repository
+    participant Project as GitHub Project
+    
+    User->>Issue: Open "New Repo Request"
+    Issue->>Issue: Auto-label "new-repo"
+    Issue->>Project: Auto-add to board
+    
+    Platform->>Issue: Review request
+    Platform->>Issue: Approve
+    
+    Platform->>GH: Create repository
+    GH->>Repo: Initialize empty repo
+    
+    Platform->>Template: Use as template
+    Template->>Repo: Copy structure
+    
+    Note over Repo: Files copied:<br/>- README, LICENSE, .gitignore<br/>- CODEOWNERS<br/>- .github/workflows/<br/>- .github/copilot-instructions.md<br/>- docs/ structure
+    
+    Platform->>Swarm: Activate Bootstrap Swarm
+    
+    activate Swarm
+    Swarm->>Swarm: Planner: Create task list
+    Swarm->>Repo: Governance: Validate compliance
+    Swarm->>Repo: CI Agent: Configure workflows
+    Swarm->>Repo: Docs Agent: Initialize docs
+    deactivate Swarm
+    
+    Swarm->>Repo: Commit customizations
+    
+    Repo->>GH: Run policy-check workflow
+    GH-->>Repo: ✅ Pass
+    
+    Platform->>GH: Configure secrets
+    Platform->>GH: Set up branch protection
+    Platform->>GH: Configure project integration
+    
+    Platform->>Issue: Comment with repo link
+    Platform->>Issue: Close issue
+    Issue->>Project: Status → Done
+    
+    Platform->>User: Notify repo ready
+    User->>Repo: Clone and start work

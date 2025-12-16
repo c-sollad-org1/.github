@@ -1,0 +1,84 @@
+name: New Repository Request
+description: Request creation of a new repository in the organization
+title: "[New Repo]: "
+labels: [new-repo, needs-approval]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to request a new repository. Platform Team will create it using the **repo-template**.
+  - type: input
+    id: repo-name
+    attributes:
+      label: Repository name
+      description: What should the repository be called?
+      placeholder: my-new-service
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Repository description
+      description: One-line description for the repo (appears on GitHub)
+      placeholder: A service that does X
+    validations:
+      required: true
+  - type: dropdown
+    id: visibility
+    attributes:
+      label: Visibility
+      description: Should this repo be public or private?
+      options:
+        - Private
+        - Public
+    validations:
+      required: true
+  - type: textarea
+    id: purpose
+    attributes:
+      label: Purpose
+      description: Why is this repository needed? What problem does it solve?
+    validations:
+      required: true
+  - type: input
+    id: owner-team
+    attributes:
+      label: Owner team
+      description: Which GitHub team will own this repo?
+      placeholder: "@org/my-team"
+    validations:
+      required: true
+  - type: dropdown
+    id: primary-language
+    attributes:
+      label: Primary language
+      description: What language will this repo primarily use?
+      options:
+        - TypeScript
+        - JavaScript
+        - Python
+        - Go
+        - Java
+        - C#
+        - Ruby
+        - Rust
+        - Other
+    validations:
+      required: false
+  - type: checkboxes
+    id: optional-modules
+    attributes:
+      label: Optional modules
+      description: Which optional modules should be enabled?
+      options:
+        - label: DevContainer configuration
+        - label: Advanced CI/CD pipelines
+        - label: Security scanning
+        - label: Code coverage tracking
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional requirements
+      description: Any special configuration, integrations, or requirements?
+    validations:
+      required: false

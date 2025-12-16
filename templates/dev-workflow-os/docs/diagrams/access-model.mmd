@@ -1,0 +1,85 @@
+graph TB
+    subgraph "Organization Level"
+        OrgOwner[Organization Owners]
+        Platform[Platform Team]
+        Security[Security Team]
+    end
+    
+    subgraph "Repository Level"
+        RepoAdmin[Repository Admins]
+        RepoMaintainer[Repository Maintainers]
+        RepoWrite[Repository Writers]
+        RepoRead[Repository Readers]
+    end
+    
+    subgraph "Contributor Level"
+        External[External Contributors]
+        Bots[GitHub Bots / Apps]
+    end
+    
+    subgraph "Permissions"
+        P1[Manage Org Settings]
+        P2[Manage Rulesets]
+        P3[Create Repositories]
+        P4[Manage Secrets]
+        P5[Admin Access to Repos]
+        P6[Bypass Rulesets]
+        P7[Force Push]
+        P8[Delete Branches]
+        P9[Merge PRs]
+        P10[Push to Main]
+        P11[Create PRs]
+        P12[Read Code]
+    end
+    
+    OrgOwner -->|all| P1
+    OrgOwner -->|all| P2
+    OrgOwner -->|all| P3
+    
+    Platform -->|manage| P2
+    Platform -->|create| P3
+    Platform -->|configure| P4
+    Platform -->|limited| P6
+    
+    Security -->|audit| P2
+    Security -->|emergency| P6
+    
+    RepoAdmin -->|repo-level| P5
+    RepoAdmin -->|configure| P4
+    
+    RepoMaintainer -->|can| P9
+    RepoMaintainer -->|blocked| P10
+    RepoMaintainer -->|blocked| P7
+    RepoMaintainer -->|blocked| P8
+    
+    RepoWrite -->|can| P11
+    RepoWrite -->|blocked| P9
+    
+    RepoRead -->|can| P12
+    
+    External -->|via PR| P11
+    External -->|must pass| Review[Code Review]
+    
+    Bots -->|limited| P11
+    Bots -->|automated| P9
+    
+    Review -->|if approved| P9
+    
+    subgraph "Audit"
+        AuditLog[GitHub Audit Log]
+        P6 -.->|logged| AuditLog
+        P7 -.->|logged| AuditLog
+        P1 -.->|logged| AuditLog
+        P2 -.->|logged| AuditLog
+    end
+    
+    style OrgOwner fill:#d32f2f,color:#fff
+    style Platform fill:#1976d2,color:#fff
+    style Security fill:#f57c00,color:#fff
+    style RepoAdmin fill:#388e3c,color:#fff
+    style RepoMaintainer fill:#7cb342
+    style RepoWrite fill:#9ccc65
+    style RepoRead fill:#c5e1a5
+    style External fill:#90a4ae
+    style Bots fill:#78909c
+    style AuditLog fill:#fce4ec

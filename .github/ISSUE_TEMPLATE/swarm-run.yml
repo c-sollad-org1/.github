@@ -1,0 +1,85 @@
+name: Swarm Run
+description: Coordinate a multi-agent swarm to accomplish a complex task
+title: "[Swarm]: "
+labels: [swarm, automation]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to coordinate multiple custom agents (a "swarm") for complex, cross-cutting tasks.
+        
+        **Available swarms:**
+        - **Bootstrap Swarm**: Initialize a new repository
+        - **Security Hardening Swarm**: Apply security best practices
+        - **Release Swarm**: Coordinate release preparation and deployment
+  - type: dropdown
+    id: swarm-type
+    attributes:
+      label: Swarm type
+      description: Which swarm should be activated?
+      options:
+        - Bootstrap Swarm
+        - Security Hardening Swarm
+        - Release Swarm
+        - Custom (specify below)
+    validations:
+      required: true
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: What is the high-level goal of this swarm run?
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: Which repositories or components are in scope?
+      placeholder: |
+        - Repository: org/repo-name
+        - Affected areas: CI, docs, security
+    validations:
+      required: true
+  - type: textarea
+    id: agents
+    attributes:
+      label: Custom agents to involve
+      description: If using a custom swarm, list the agents that should participate
+      placeholder: |
+        - Planner
+        - CI Automation
+        - Docs/Diagrams
+        - Security
+    validations:
+      required: false
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints
+      description: Any constraints or special requirements?
+      placeholder: |
+        - Timeline: Complete by YYYY-MM-DD
+        - Breaking changes: Not allowed
+        - Dependencies: Wait for PR #123
+    validations:
+      required: false
+  - type: textarea
+    id: success-criteria
+    attributes:
+      label: Success criteria
+      description: How will we know the swarm run succeeded?
+      placeholder: |
+        - [ ] All agents have completed their tasks
+        - [ ] Tests pass
+        - [ ] Documentation updated
+        - [ ] PR opened and reviewed
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Links, background information, or related issues
+    validations:
+      required: false

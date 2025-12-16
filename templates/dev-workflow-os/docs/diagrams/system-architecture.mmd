@@ -1,0 +1,64 @@
+graph TB
+    subgraph "ORG_NAME Organization"
+        subgraph "Control Plane"
+            DWO[dev-workflow-os<br/>Source of Truth]
+        end
+        
+        subgraph "Organization Defaults"
+            OG[.github<br/>PUBLIC<br/>Community Health Files]
+        end
+        
+        subgraph "Template"
+            RT[repo-template<br/>New Repo Template]
+        end
+        
+        subgraph "Repositories"
+            R1[repo-1]
+            R2[repo-2]
+            R3[repo-3]
+            RN[repo-n...]
+        end
+        
+        subgraph "GitHub Platform"
+            RS[Organization Rulesets]
+            PR[GitHub Projects v2]
+            GH[GitHub Actions]
+        end
+    end
+    
+    DWO -->|defines| OG
+    DWO -->|defines| RT
+    DWO -->|configures| RS
+    DWO -->|configures| PR
+    
+    OG -->|inherits defaults| R1
+    OG -->|inherits defaults| R2
+    OG -->|inherits defaults| R3
+    OG -->|inherits defaults| RN
+    
+    RT -->|creates| R1
+    RT -->|creates| R2
+    RT -->|creates| R3
+    RT -->|creates| RN
+    
+    RS -->|enforces on| R1
+    RS -->|enforces on| R2
+    RS -->|enforces on| R3
+    RS -->|enforces on| RN
+    
+    GH -->|runs in| R1
+    GH -->|runs in| R2
+    GH -->|runs in| R3
+    GH -->|runs in| RN
+    
+    R1 -->|tracked in| PR
+    R2 -->|tracked in| PR
+    R3 -->|tracked in| PR
+    RN -->|tracked in| PR
+    
+    style DWO fill:#e1f5ff
+    style OG fill:#fff4e1
+    style RT fill:#e8f5e9
+    style RS fill:#fce4ec
+    style PR fill:#f3e5f5
+    style GH fill:#e0f2f1
