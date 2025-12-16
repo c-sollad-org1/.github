@@ -1,0 +1,123 @@
+graph LR
+    subgraph "Triggers"
+        T1[Issue Opened]
+        T2[PR Opened]
+        T3[Push to Main]
+        T4[Schedule]
+        T5[Manual Dispatch]
+    end
+    
+    subgraph "Workflow Automation"
+        W1[add-to-project.yml]
+        W2[policy-check.yml]
+        W3[dependency-review.yml]
+        W4[ci.yml]
+        W5[security-scan.yml]
+    end
+    
+    subgraph "Custom Agents"
+        A1[Planner Agent]
+        A2[Governance Agent]
+        A3[CI Automation Agent]
+        A4[Security Agent]
+        A5[Docs Agent]
+    end
+    
+    subgraph "Swarms"
+        S1[Bootstrap Swarm]
+        S2[Security Hardening Swarm]
+        S3[Release Swarm]
+    end
+    
+    subgraph "GitHub Platform"
+        GP1[GitHub Projects]
+        GP2[Branch Protection]
+        GP3[Issue/PR Updates]
+        GP4[Notifications]
+    end
+    
+    subgraph "External Systems"
+        E1[Slack/Teams]
+        E2[Monitoring]
+        E3[Security Scanners]
+    end
+    
+    T1 -->|triggers| W1
+    T1 -->|triggers| A1
+    
+    T2 -->|triggers| W1
+    T2 -->|triggers| W2
+    T2 -->|triggers| W3
+    T2 -->|triggers| W4
+    
+    T3 -->|triggers| W2
+    T3 -->|triggers| W4
+    T3 -->|triggers| W5
+    
+    T4 -->|triggers| W5
+    T4 -->|triggers| E2
+    
+    T5 -->|triggers| S1
+    T5 -->|triggers| S2
+    T5 -->|triggers| S3
+    
+    W1 -->|adds to| GP1
+    W1 -->|comments on| GP3
+    
+    W2 -->|validates| GP2
+    W2 -->|reports to| GP3
+    
+    W3 -->|scans| E3
+    W3 -->|blocks if| GP2
+    
+    W4 -->|runs| Tests[Tests]
+    W4 -->|builds| Artifacts[Artifacts]
+    W4 -->|reports to| GP3
+    
+    W5 -->|scans with| E3
+    W5 -->|creates| GP3
+    
+    A2 -->|validates| W2
+    A3 -->|manages| W4
+    A4 -->|reviews| W5
+    A5 -->|updates| Docs[Documentation]
+    
+    S1 -->|orchestrates| A1
+    S1 -->|orchestrates| A2
+    S1 -->|orchestrates| A3
+    S1 -->|orchestrates| A5
+    
+    S2 -->|orchestrates| A4
+    S2 -->|orchestrates| A2
+    S2 -->|orchestrates| A3
+    
+    S3 -->|orchestrates| A3
+    S3 -->|orchestrates| A4
+    S3 -->|orchestrates| A5
+    
+    GP1 -->|automations| GP3
+    GP2 -->|enforces| Rules[Rulesets]
+    GP3 -->|notifies| GP4
+    GP4 -->|sends to| E1
+    
+    E2 -->|alerts to| E1
+    E3 -->|reports to| GP3
+    
+    style T1 fill:#e3f2fd
+    style T2 fill:#e3f2fd
+    style T3 fill:#e3f2fd
+    style T4 fill:#e3f2fd
+    style T5 fill:#e3f2fd
+    style W1 fill:#e8f5e9
+    style W2 fill:#e8f5e9
+    style W3 fill:#e8f5e9
+    style W4 fill:#e8f5e9
+    style W5 fill:#e8f5e9
+    style A1 fill:#f3e5f5
+    style A2 fill:#f3e5f5
+    style A3 fill:#f3e5f5
+    style A4 fill:#f3e5f5
+    style A5 fill:#f3e5f5
+    style S1 fill:#fff3e0
+    style S2 fill:#fff3e0
+    style S3 fill:#fff3e0

@@ -1,0 +1,92 @@
+graph TB
+    subgraph "Layer 1: Organization Defaults"
+        OD[ORG/.github<br/>Community Health Files]
+        OD1[CODE_OF_CONDUCT.md]
+        OD2[CONTRIBUTING.md]
+        OD3[SECURITY.md]
+        OD4[Issue Templates]
+        OD5[PR Template]
+        OD --> OD1
+        OD --> OD2
+        OD --> OD3
+        OD --> OD4
+        OD --> OD5
+    end
+    
+    subgraph "Layer 2: Organization Rulesets"
+        RS[Organization Rulesets]
+        RS1[PR Required]
+        RS2[Required Checks]
+        RS3[CODEOWNERS Review]
+        RS4[Block Force Push]
+        RS5[Restrict Bypass]
+        RS --> RS1
+        RS --> RS2
+        RS --> RS3
+        RS --> RS4
+        RS --> RS5
+    end
+    
+    subgraph "Layer 3: Repository Structure"
+        RT[repo-template]
+        RT1[Required Files]
+        RT2[CODEOWNERS]
+        RT3[Workflows]
+        RT4[Copilot Config]
+        RT5[Docs Structure]
+        RT --> RT1
+        RT --> RT2
+        RT --> RT3
+        RT --> RT4
+        RT --> RT5
+    end
+    
+    subgraph "Layer 4: Automated Workflows"
+        WF[GitHub Actions]
+        WF1[policy-check.yml]
+        WF2[dependency-review.yml]
+        WF3[add-to-project.yml]
+        WF4[ci.yml]
+        WF --> WF1
+        WF --> WF2
+        WF --> WF3
+        WF --> WF4
+    end
+    
+    subgraph "Layer 5: Custom Agents"
+        CA[Copilot Agents]
+        CA1[Governance Agent]
+        CA2[CI Automation Agent]
+        CA3[Security Agent]
+        CA4[Docs Agent]
+        CA --> CA1
+        CA --> CA2
+        CA --> CA3
+        CA --> CA4
+    end
+    
+    subgraph "Layer 6: GitHub Projects"
+        GP[Project Tracking]
+        GP1[Status Fields]
+        GP2[Priority Labels]
+        GP3[Area Tags]
+        GP4[Automations]
+        GP --> GP1
+        GP --> GP2
+        GP --> GP3
+        GP --> GP4
+    end
+    
+    OD -->|inherits to| RT
+    RS -->|enforces on| RT
+    RT -->|contains| WF
+    WF -->|validated by| CA
+    WF -->|updates| GP
+    CA -->|creates| GP
+    
+    style OD fill:#fff4e1
+    style RS fill:#fce4ec
+    style RT fill:#e8f5e9
+    style WF fill:#e0f2f1
+    style CA fill:#f3e5f5
+    style GP fill:#e1f5ff

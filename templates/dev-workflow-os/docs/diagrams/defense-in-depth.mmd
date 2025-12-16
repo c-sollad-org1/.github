@@ -1,0 +1,78 @@
+graph TB
+    subgraph "Defense Layer 1: GitHub Platform"
+        L1[Organization Rulesets]
+        L1A[Branch Protection]
+        L1B[Required Reviews]
+        L1C[Status Checks]
+        L1 --> L1A
+        L1 --> L1B
+        L1 --> L1C
+    end
+    
+    subgraph "Defense Layer 2: CODEOWNERS"
+        L2[Path-Based Review]
+        L2A[/.github/ → Platform Team]
+        L2B[/docs/ → Docs Team]
+        L2C[/src/ → Dev Team]
+        L2 --> L2A
+        L2 --> L2B
+        L2 --> L2C
+    end
+    
+    subgraph "Defense Layer 3: Automated Checks"
+        L3[Workflow Enforcement]
+        L3A[policy-check]
+        L3B[dependency-review]
+        L3C[ci lint & test]
+        L3D[security scanning]
+        L3 --> L3A
+        L3 --> L3B
+        L3 --> L3C
+        L3 --> L3D
+    end
+    
+    subgraph "Defense Layer 4: Custom Agents"
+        L4[Copilot Validation]
+        L4A[Governance Agent]
+        L4B[Security Agent]
+        L4C[CI Agent]
+        L4 --> L4A
+        L4 --> L4B
+        L4 --> L4C
+    end
+    
+    subgraph "Defense Layer 5: Human Review"
+        L5[Manual Oversight]
+        L5A[PR Review]
+        L5B[Code Review]
+        L5C[Architecture Review]
+        L5 --> L5A
+        L5 --> L5B
+        L5 --> L5C
+    end
+    
+    Threat[Potential Security Threat<br/>or Policy Violation]
+    
+    Threat -->|blocked by| L1
+    L1 -->|if bypassed| L2
+    L2 -->|if bypassed| L3
+    L3 -->|if bypassed| L4
+    L4 -->|if bypassed| L5
+    L5 -->|escalate| Incident[Security Incident Response]
+    
+    L1 -.->|logs| Audit[Audit Trail]
+    L2 -.->|logs| Audit
+    L3 -.->|logs| Audit
+    L4 -.->|logs| Audit
+    L5 -.->|logs| Audit
+    
+    Audit -->|reviewed by| Platform[Platform Team]
+    
+    style L1 fill:#ffebee
+    style L2 fill:#fff3e0
+    style L3 fill:#e8f5e9
+    style L4 fill:#e1f5ff
+    style L5 fill:#f3e5f5
+    style Threat fill:#ff5252,color:#fff
+    style Incident fill:#d32f2f,color:#fff
+    style Audit fill:#fce4ec
