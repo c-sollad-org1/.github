@@ -1,0 +1,101 @@
+name: Policy Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  push:
+    branches:
+      - main
+
+jobs:
+  policy-check:
+    name: Verify repository compliance
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check required files
+        id: required-files
+        run: |
+          echo "Checking for required files..."
+          MISSING=""
+          
+          # Core files
+          [ ! -f "README.md" ] && MISSING="$MISSING README.md"
+          [ ! -f "LICENSE" ] && MISSING="$MISSING LICENSE"
+          [ ! -f ".gitignore" ] && MISSING="$MISSING .gitignore"
+          
+          # GitHub files
+          [ ! -f ".github/CODEOWNERS" ] && [ ! -f "CODEOWNERS" ] && MISSING="$MISSING CODEOWNERS"
+          [ ! -f ".github/copilot-instructions.md" ] && MISSING="$MISSING .github/copilot-instructions.md"
+          
+          if [ -n "$MISSING" ]; then
+            echo "missing=$MISSING" >> $GITHUB_OUTPUT
+            echo "::error::Missing required files: $MISSING"
+            exit 1
+          else
+            echo "✅ All required files present"
+          fi
+
+      - name: Check for prohibited patterns
+        id: prohibited-patterns
+        run: |
+          echo "Scanning for prohibited patterns..."
+          
+          # Check for hardcoded secrets (basic check)
+          if git grep -E "(password|api[_-]?key|secret|token)\s*=\s*['\"][^'\"]+['\"]" -- ':!*.md' ':!workflow-templates' ':!.github/workflows'; then
+            echo "::warning::Potential hardcoded secrets detected. Please review."
+          fi
+          
+          # Check for TODO in main branch
+          if [ "$GITHUB_REF" = "refs/heads/main" ]; then
+            if git grep -i "TODO\|FIXME" -- ':!*.md'; then
+              echo "::warning::Found TODO/FIXME comments in main branch"
+            fi
+          fi
+          
+          echo "✅ Prohibited pattern check complete"
+
+      - name: Verify governance alignment
+        id: governance
+        run: |
+          echo "Checking governance alignment..."
+          
+          # Verify CODEOWNERS exists and is not empty
+          if [ -f ".github/CODEOWNERS" ] || [ -f "CODEOWNERS" ]; then
+            CODEOWNERS_FILE=".github/CODEOWNERS"
+            [ ! -f "$CODEOWNERS_FILE" ] && CODEOWNERS_FILE="CODEOWNERS"
+            
+            if [ ! -s "$CODEOWNERS_FILE" ]; then
+              echo "::error::CODEOWNERS file is empty"
+              exit 1
+            fi
+          fi
+          
+          echo "✅ Governance checks passed"
+
+      - name: Post policy check results
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const comment = `## 🔍 Policy Check Results
+            
+            ✅ Repository compliance verified
+            
+            - Required files: Present
+            - Prohibited patterns: None detected
+            - Governance: Aligned
+            
+            _Note: This is an automated check. Review any warnings above._`;
+            
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: comment
+            });

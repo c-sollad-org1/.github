@@ -1,0 +1,7 @@
+{
+  "name": "Policy Check Workflow",
+  "description": "Verifies repository compliance with organization policies and standards",
+  "iconName": "shield-check",
+  "categories": ["Governance", "Compliance"],
+  "filePatterns": ["policy-check.yml"]
+}

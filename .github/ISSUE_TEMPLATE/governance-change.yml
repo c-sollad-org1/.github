@@ -1,0 +1,72 @@
+name: Governance Change
+description: Propose a change to organization-level governance, policies, or standards
+title: "[Governance]: "
+labels: [governance, needs-approval]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to propose changes to:
+        - Organization-wide policies
+        - Repository rulesets
+        - Community health file defaults
+        - Workflow standards
+        - Security or compliance requirements
+        
+        **Note:** Platform Team (@org/platform-team) must review and approve governance changes.
+  - type: textarea
+    id: current
+    attributes:
+      label: Current state
+      description: What is the current policy, standard, or behavior?
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed change
+      description: What do you want to change, and why?
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact assessment
+      description: Which repositories or teams will be affected?
+      placeholder: |
+        - Affected repos: all / specific list
+        - Breaking change: yes / no
+        - Migration required: yes / no
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What other approaches did you consider?
+    validations:
+      required: false
+  - type: dropdown
+    id: urgency
+    attributes:
+      label: Urgency
+      description: How time-sensitive is this change?
+      options:
+        - P0 - Immediate (security/compliance)
+        - P1 - High (next sprint)
+        - P2 - Medium (next quarter)
+        - P3 - Low (backlog)
+    validations:
+      required: true
+  - type: textarea
+    id: rollout
+    attributes:
+      label: Rollout plan
+      description: How should this change be implemented?
+      placeholder: |
+        1. Update documentation
+        2. Communicate to teams
+        3. Apply to new repos
+        4. Migrate existing repos (if needed)
+    validations:
+      required: false

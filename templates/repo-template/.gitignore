@@ -1,0 +1,56 @@
+# OS-specific
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+.idea/
+*.iml
+
+# Build artifacts
+dist/
+build/
+out/
+target/
+*.o
+*.so
+*.dylib
+*.dll
+*.exe
+
+# Dependencies
+node_modules/
+vendor/
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Environment
+.env
+.env.local
+*.log
+
+# Test coverage
+coverage/
+*.lcov
+.coverage
+htmlcov/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Secrets and credentials (double-check before commit)
+*.key
+*.pem
+*.p12
+secrets.yml
+credentials.json
