@@ -218,21 +218,46 @@ To request an exception to org-level rulesets:
 ### Via GitHub API
 
 ```bash
-# Create ruleset
+# Create ruleset (using JSON for complex nested structures is recommended)
+cat > ruleset.json << 'EOF'
+{
+  "name": "Main Branch Protection",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "include": ["refs/heads/main"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    {
+      "type": "pull_request",
+      "parameters": {
+        "dismiss_stale_reviews_on_push": true,
+        "require_code_owner_review": true,
+        "required_approving_review_count": 1
+      }
+    },
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "required_status_checks": [
+          {"context": "policy-check"},
+          {"context": "ci"}
+        ]
+      }
+    },
+    {"type": "non_fast_forward"},
+    {"type": "deletion"},
+    {"type": "required_linear_history"}
+  ]
+}
+EOF
+
 gh api /orgs/ORG_NAME/rulesets \
   --method POST \
-  --field name="Main Branch Protection" \
-  --field enforcement="active" \
-  --field target="branch" \
-  --field 'conditions[ref_name][include][]="refs/heads/main"' \
-  --field 'rules[pull_request][parameters][dismiss_stale_reviews_on_push]=true' \
-  --field 'rules[pull_request][parameters][require_code_owner_review]=true' \
-  --field 'rules[pull_request][parameters][required_approving_review_count]=1' \
-  --field 'rules[required_status_checks][parameters][required_status_checks][][context]="policy-check"' \
-  --field 'rules[required_status_checks][parameters][required_status_checks][][context]="ci"' \
-  --field 'rules[non_fast_forward]={}'  \
-  --field 'rules[deletion]={}' \
-  --field 'rules[required_linear_history]={}'
+  --input ruleset.json
 ```
 
 ### Via Terraform (Infrastructure as Code)

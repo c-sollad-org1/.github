@@ -237,10 +237,11 @@ Planner → Governance → CI → Docs
 
 Multiple agents work simultaneously on independent tasks:
 
-```
-     ┌─ Governance
-Plan ├─ CI
-     └─ Docs
+```mermaid
+graph LR
+    Plan --> Governance
+    Plan --> CI
+    Plan --> Docs
 ```
 
 **When to use**: Tasks are independent and can be parallelized
@@ -249,10 +250,14 @@ Plan ├─ CI
 
 Combination of sequential and parallel:
 
-```
-Plan → ┬─ Governance
-       ├─ Security  ─→ CI → Docs
-       └─ Release   ─┘
+```mermaid
+graph LR
+    Plan --> Governance
+    Plan --> Security
+    Plan --> Release
+    Security --> CI
+    Release --> CI
+    CI --> Docs
 ```
 
 **When to use**: Complex workflows with both dependencies and parallelism
@@ -328,12 +333,15 @@ body:
 
 Coordinate multiple agents to investigate a complex problem:
 
-```
-Planner (define investigation scope) →
-Security (check for vulnerabilities) +
-CI (analyze workflow failures) +
-Docs (review documentation gaps) →
-Planner (synthesize findings, propose solutions)
+```mermaid
+graph LR
+    A[Planner: Define scope] --> B[Parallel Investigation]
+    B --> C[Security: Vulnerabilities]
+    B --> D[CI: Workflow failures]
+    B --> E[Docs: Documentation gaps]
+    C --> F[Planner: Synthesize]
+    D --> F
+    E --> F
 ```
 
 ### Migration Swarm

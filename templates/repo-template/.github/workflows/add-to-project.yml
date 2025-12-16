@@ -41,20 +41,11 @@ jobs:
             if (context.payload.action === 'opened') {
               const comment = `📋 This ${itemType} has been added to the organization project board.`;
               
-              if (itemType === 'issue') {
-                await github.rest.issues.createComment({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  issue_number: itemNumber,
-                  body: comment
-                });
-              } else {
-                await github.rest.pulls.createReview({
-                  owner: context.repo.owner,
-                  repo: context.repo.repo,
-                  pull_number: itemNumber,
-                  body: comment,
-                  event: 'COMMENT'
-                });
-              }
+              // Use issues API for both issues and PRs (PRs are issues in GitHub API)
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: itemNumber,
+                body: comment
+              });
             }

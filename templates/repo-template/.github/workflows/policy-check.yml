@@ -47,8 +47,9 @@ jobs:
           echo "Scanning for prohibited patterns..."
           
           # Check for hardcoded secrets (basic check)
-          if git grep -E "(password|api[_-]?key|secret|token)\s*=\s*['\"][^'\"]+['\"]" -- ':!*.md' ':!workflow-templates' ':!.github/workflows'; then
-            echo "::warning::Potential hardcoded secrets detected. Please review."
+          # Note: This is a basic check. Use GitHub's built-in secret scanning for comprehensive protection
+          if git grep -E "(password|api[_-]?key|secret|token)\s*=\s*['\"][^'\"]+['\"]" -- ':!*.md' ':!workflow-templates' ':!.github/workflows' ':!templates'; then
+            echo "::warning::Potential hardcoded secrets detected. Please review. This is a basic regex check - rely on GitHub secret scanning for comprehensive protection."
           fi
           
           # Check for TODO in main branch

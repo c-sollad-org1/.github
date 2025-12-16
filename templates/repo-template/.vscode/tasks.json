@@ -44,9 +44,9 @@
       "problemMatcher": []
     },
     {
-      "label": "Policy Check (Local)",
+      "label": "Policy Check (Manual Steps)",
       "type": "shell",
-      "command": ".github/workflows/policy-check.yml",
+      "command": "echo 'Running manual policy checks...' && ls -la README.md LICENSE .gitignore CODEOWNERS .github/copilot-instructions.md 2>/dev/null || echo 'Some required files are missing'",
       "group": "none",
       "presentation": {
         "reveal": "always",
