@@ -2,6 +2,8 @@
 
 This directory contains custom GitHub Copilot agents designed to enhance pull request reviews. These agents are based on best practices from the [awesome-copilot](https://github.com/github/awesome-copilot) community repository.
 
+> 📖 **For a comprehensive catalog of all available agents and prompts from awesome-copilot**, see [AWESOME_COPILOT_REFERENCE.md](../AWESOME_COPILOT_REFERENCE.md) which includes detailed tables with required inputs, outputs, and usage information for 10+ prompts and 5+ agents.
+
 ## Available Agents
 
 ### 1. Code Reviewer (`code-reviewer.agent.md`)

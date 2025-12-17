@@ -46,6 +46,13 @@ Specialized AI agents based on the [awesome-copilot](https://github.com/github/a
 - Semantic HTML and ARIA best practices
 - Color contrast and visual accessibility
 
+#### 📚 Awesome Copilot Reference (`.github/AWESOME_COPILOT_REFERENCE.md`)
+Comprehensive catalog of custom prompts and agents from awesome-copilot for PR review and automation:
+- Detailed tables with required inputs, outputs, and "use with" information
+- 10+ custom prompts for PR automation
+- 5+ specialized agents for different review types
+- Usage examples and priority guidelines
+
 ## Using GitHub Copilot Agents
 
 ### In VS Code
