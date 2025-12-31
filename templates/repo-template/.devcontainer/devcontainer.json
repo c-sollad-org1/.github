@@ -1,0 +1,39 @@
+// OPTIONAL_MODULE: DevContainer Configuration
+// Remove this file if not needed for your project
+{
+  "name": "Development Container",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  
+  // Customize based on your tech stack:
+  // - Node.js: "mcr.microsoft.com/devcontainers/javascript-node:20"
+  // - Python: "mcr.microsoft.com/devcontainers/python:3.11"
+  // - Go: "mcr.microsoft.com/devcontainers/go:1.21"
+  
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "github.copilot",
+        "github.copilot-chat",
+        "github.vscode-github-actions",
+        "github.vscode-pull-request-github",
+        "esbenp.prettier-vscode",
+        "redhat.vscode-yaml",
+        "davidanson.vscode-markdownlint"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  
+  "forwardPorts": [],
+  
+  "postCreateCommand": "echo 'Container created. Run your setup commands here (npm install, pip install, etc.)'",
+  
+  "remoteUser": "vscode"
+}

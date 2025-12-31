@@ -1,0 +1,61 @@
+name: Task
+description: Track a specific work item or action
+title: "[Task]: "
+labels: [task]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template for actionable tasks, improvements, or planned work items.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What needs to be done?
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: How will we know this is complete?
+      placeholder: |
+        - [ ] Criterion 1
+        - [ ] Criterion 2
+        - [ ] Criterion 3
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How urgent is this task?
+      options:
+        - P0 - Critical
+        - P1 - High
+        - P2 - Medium
+        - P3 - Low
+    validations:
+      required: false
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which area does this task belong to?
+      options:
+        - governance
+        - ci
+        - docs
+        - devex
+        - security
+        - release
+        - other
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: Any relevant background, links, or notes
+    validations:
+      required: false

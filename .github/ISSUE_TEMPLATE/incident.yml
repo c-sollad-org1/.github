@@ -1,0 +1,97 @@
+name: Incident
+description: Report a production incident or service disruption
+title: "[Incident]: "
+labels: [incident, P0]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        **Use this template for production incidents requiring immediate attention.**
+        
+        For non-urgent issues, use the Bug report template instead.
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: What is the impact of this incident?
+      options:
+        - SEV1 - Critical (full outage, data loss)
+        - SEV2 - High (major feature unavailable)
+        - SEV3 - Medium (degraded performance)
+        - SEV4 - Low (minor issue, workaround exists)
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact
+      description: What is broken? Who is affected?
+      placeholder: |
+        - Affected service/component:
+        - Users impacted: % or count
+        - Started at: YYYY-MM-DD HH:MM UTC
+    validations:
+      required: true
+  - type: textarea
+    id: symptoms
+    attributes:
+      label: Symptoms
+      description: What are the observable symptoms?
+      placeholder: |
+        - Error messages
+        - Failed requests
+        - Performance degradation
+    validations:
+      required: true
+  - type: textarea
+    id: timeline
+    attributes:
+      label: Timeline
+      description: When did this start? When was it detected?
+      placeholder: |
+        - Incident start: YYYY-MM-DD HH:MM UTC
+        - Detected at: YYYY-MM-DD HH:MM UTC
+        - First alert: (link to alert)
+    validations:
+      required: true
+  - type: textarea
+    id: investigation
+    attributes:
+      label: Initial investigation
+      description: What have you checked so far?
+      placeholder: |
+        - Logs: (link or snippet)
+        - Metrics: (link to dashboard)
+        - Recent changes: (PRs, deployments)
+    validations:
+      required: false
+  - type: input
+    id: war-room
+    attributes:
+      label: War room / Slack channel
+      description: Link to real-time coordination channel
+      placeholder: "#incident-2024-12-16"
+    validations:
+      required: false
+  - type: textarea
+    id: mitigation
+    attributes:
+      label: Mitigation steps
+      description: What actions are being taken?
+      placeholder: |
+        - [ ] Rollback to previous version
+        - [ ] Increase resource limits
+        - [ ] Disable feature flag
+    validations:
+      required: false
+  - type: textarea
+    id: next-steps
+    attributes:
+      label: Next steps
+      description: What should happen next?
+      placeholder: |
+        1. Complete mitigation
+        2. Root cause analysis
+        3. Post-incident review
+    validations:
+      required: false

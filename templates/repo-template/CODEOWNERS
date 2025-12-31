@@ -1,0 +1,15 @@
+# CODEOWNERS
+#
+# This organization currently has a single maintainer.
+# Use your GitHub username directly instead of teams.
+* @c-dollas
+
+# Example: Specific paths can have different owners
+# /docs/ @org/docs-team
+# /src/api/ @org/backend-team
+# /src/ui/ @org/frontend-team
+# /.github/ @c-dollas
+
+# Governance + automation files require owner review
+/GOVERNANCE.md @c-dollas
+/.github/workflows/ @c-dollas
