@@ -1,10 +1,12 @@
-# Documentation Instructions
+---
+applyTo: "**/docs/**/*.md,**/README.md,**/diagrams/**/*.mmd"
+---
 
-**Apply to**: `**/docs/**/*.md`, `**/README.md`, `**/diagrams/**/*.mmd`
+# Documentation Instructions
 
 ## Context
 
-This repository follows documentation standards from the **ORG_NAME Dev Workflow OS v1**. Good documentation is a core deliverable, not an afterthought.
+This repository follows documentation standards from the **c-sollad-org1 Dev Workflow OS v1**. Good documentation is a core deliverable, not an afterthought.
 
 ## Documentation Principles
 
@@ -68,16 +70,16 @@ Brief one-line description.
 
 ## Documentation
 
-- [Architecture](docs/architecture/README.md)
-- [Runbooks](docs/runbooks/README.md)
+- Architecture: `docs/architecture/README.md`
+- Runbooks: `docs/runbooks/README.md`
 
 ## Contributing
 
-See [CONTRIBUTING.md](...)
+See `CONTRIBUTING.md` (org-level) or the repository's contributing guide.
 
 ## License
 
-See [LICENSE](LICENSE)
+See `LICENSE`.
 
 ## Support
 
@@ -185,8 +187,8 @@ Common issues and fixes.
 
 ## Related
 
-- [Other runbook](...)
-- [Architecture doc](...)
+- Related runbook: `docs/runbooks/<runbook>.md`
+- Related architecture doc: `docs/architecture/<doc>.md`
 ```
 
 ## Code Comments vs. Documentation

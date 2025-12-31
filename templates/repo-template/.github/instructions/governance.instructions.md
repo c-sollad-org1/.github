@@ -1,10 +1,12 @@
-# Governance Instructions
+---
+applyTo: "**/GOVERNANCE.md,**/.github/workflows/*.yml,**/policy/**,**/CODEOWNERS"
+---
 
-**Apply to**: `**/GOVERNANCE.md`, `**/.github/workflows/*.yml`, `**/policy/**`, `**/CODEOWNERS`
+# Governance Instructions
 
 ## Context
 
-This repository follows the **ORG_NAME Dev Workflow OS v1** governance model. Changes to governance files require Platform Team review and alignment with organization-wide standards.
+This repository follows the **c-sollad-org1 Dev Workflow OS v1** governance model. Changes to governance files require owner review and alignment with organization-wide standards.
 
 ## When Making Governance Changes
 
@@ -17,9 +19,9 @@ This repository follows the **ORG_NAME Dev Workflow OS v1** governance model. Ch
 
 Before making changes:
 
-- Review [dev-workflow-os governance docs](https://github.com/ORG_NAME/dev-workflow-os/tree/main/docs/governance)
-- Check current org rulesets: `gh api /orgs/ORG_NAME/rulesets`
-- Verify required files list in [policy/required-files](https://github.com/ORG_NAME/dev-workflow-os/tree/main/policy/required-files)
+- Review dev-workflow-os governance docs: https://github.com/c-sollad-org1/dev-workflow-os/tree/main/docs/governance
+- Check current org rulesets: `gh api /orgs/c-sollad-org1/rulesets`
+- Verify required files list: https://github.com/c-sollad-org1/dev-workflow-os/tree/main/policy/required-files
 
 ### 3. Required Workflows
 
@@ -36,20 +38,20 @@ Do not remove or disable these workflows.
 
 ```
 # Default owner
-* @org/platform-team
+* @c-dollas
 
 # Path-specific owners (order matters - last match wins)
 /docs/ @org/docs-team
 /src/api/ @org/backend-team
-/.github/ @org/platform-team
+/.github/ @c-dollas
 ```
 
 ### 5. Rulesets
 
 Rulesets are configured at the **organization level** and cannot be overridden in individual repos. If you need a ruleset change:
 
-1. Open a "Governance Change" issue in [dev-workflow-os](https://github.com/ORG_NAME/dev-workflow-os)
-2. Tag @org/platform-team
+1. Open a "Governance Change" issue in https://github.com/c-sollad-org1/dev-workflow-os
+2. Tag @c-dollas
 3. Provide justification and impact assessment
 
 ### 6. Coverage Matrix
@@ -69,7 +71,7 @@ Format:
 Before merging:
 
 - Test workflow changes in a draft PR
-- Verify CODEOWNERS syntax: `gh api /repos/ORG_NAME/REPO/codeowners/errors`
+- Verify CODEOWNERS syntax: `gh api /repos/c-sollad-org1/REPO/codeowners/errors`
 - Run `policy-check` workflow manually
 
 ### 8. Communication
@@ -97,6 +99,6 @@ For significant governance changes:
 
 ## Resources
 
-- [Org governance docs](https://github.com/ORG_NAME/dev-workflow-os/tree/main/docs/governance)
-- [Ruleset standards](https://github.com/ORG_NAME/dev-workflow-os/tree/main/policy/rulesets)
-- [Platform Team](https://github.com/orgs/ORG_NAME/teams/platform-team)
+- Org governance docs: https://github.com/c-sollad-org1/dev-workflow-os/tree/main/docs/governance
+- Ruleset standards: https://github.com/c-sollad-org1/dev-workflow-os/tree/main/policy/rulesets
+- Owner: @c-dollas
