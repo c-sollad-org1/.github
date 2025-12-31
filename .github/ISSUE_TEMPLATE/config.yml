@@ -1,8 +1,0 @@
-blank_issues_enabled: false
-contact_links:
-  - name: Security issue
-    url: https://github.com/c-sollad-org1
-    about: "Do not open public issues for vulnerabilities. Follow SECURITY.md in the relevant repo or email <SECURITY_EMAIL>."
-  - name: Support
-    url: https://github.com/c-sollad-org1
-    about: "For help, open an issue in the relevant repo and include repro steps and environment details."
