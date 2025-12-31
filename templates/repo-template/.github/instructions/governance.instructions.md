@@ -62,9 +62,9 @@ When adding new controls (security checks, required reviews, etc.), update the c
 
 Format:
 
-| Control | Enforcement | Artifact | Scope | Owner |
-|---------|-------------|----------|-------|-------|
-| PR required | Ruleset | Branch protection | main | Platform |
+| Control     | Enforcement | Artifact          | Scope | Owner    |
+| ----------- | ----------- | ----------------- | ----- | -------- |
+| PR required | Ruleset     | Branch protection | main  | Platform |
 
 ### 7. Testing Governance Changes
 

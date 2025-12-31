@@ -59,13 +59,17 @@ Brief one-line description.
 ## Getting Started
 
 ### Prerequisites
+
 ### Installation
+
 ### Usage
 
 ## Development
 
 ### Building
+
 ### Testing
+
 ### Linting
 
 ## Documentation
@@ -117,10 +121,12 @@ We will use PostgreSQL because...
 ## Consequences
 
 Positive:
+
 - High reliability
 - Rich ecosystem
 
 Negative:
+
 - Operational complexity
 - Cost
 ```
@@ -137,6 +143,7 @@ graph LR
 ```
 
 Diagram types:
+
 - System architecture: `graph` or `C4Context`
 - Sequence: `sequenceDiagram`
 - State machines: `stateDiagram-v2`
@@ -150,7 +157,7 @@ Runbooks are step-by-step procedures for operational tasks:
 
 ### Structure
 
-```markdown
+````markdown
 # Runbook: Task Name
 
 ## Purpose
@@ -169,7 +176,9 @@ What does this accomplish?
    ```bash
    command here
    ```
-   Expected output: ...
+````
+
+Expected output: ...
 
 2. Step two...
 
@@ -189,7 +198,8 @@ Common issues and fixes.
 
 - Related runbook: `docs/runbooks/<runbook>.md`
 - Related architecture doc: `docs/architecture/<doc>.md`
-```
+
+````
 
 ## Code Comments vs. Documentation
 
@@ -204,7 +214,7 @@ counter++;
 
 // Good: Track retry attempts for exponential backoff
 retryAttempts++;
-```
+````
 
 ## Updating Documentation
 
